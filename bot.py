@@ -37,19 +37,6 @@ def save_data(data: dict):
         json.dump(data, file, indent=4)
 
 
-# Routes
-@app.route("/", methods=["GET", "POST"])
-def index():
-    if request.method == "POST":
-        msg = request.get_json()
-        print(msg)
-        chat_id = message_parser(msg)
-        send_message(chat_id, "Hello! You will receive daily quotes.")
-        return Response(response="OK", status=200)
-    else:
-        return "<h1>Something went wrong</h1>"
-
-
 def send_message(chat_id, text):
     url = f"https://api.telegram.org/bot{BOT_KEY}/sendMessage"
     payload = {"chat_id": chat_id, "text": text}
@@ -62,6 +49,19 @@ def message_parser(msg):
     text = msg["message"]["text"]
     print(f"Chat ID: {chat_id}, Text: {text}")
     return chat_id
+
+
+# Routes
+@app.route("/", methods=["GET", "POST"])
+def index():
+    if request.method == "POST":
+        msg = request.get_json()
+        print(msg)
+        chat_id = message_parser(msg)
+        send_message(chat_id, "Hello! You will receive daily quotes.")
+        return Response(response="OK", status=200)
+    else:
+        return "<h1>Something went wrong</h1>"
 
 
 # Commands
