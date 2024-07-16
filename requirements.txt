@@ -1,4 +1,4 @@
 flask
 requests
 pyngrok
-dotenv
+python-dotenv
