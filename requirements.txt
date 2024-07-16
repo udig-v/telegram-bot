@@ -3,3 +3,4 @@ requests
 pyngrok
 python-dotenv
 apscheduler
+python-telegram-bot
